@@ -1,0 +1,25 @@
+<body>
+    <script>
+        const product = {
+        name: 'Socks',
+        price: 1090,
+        rating: { stars: 4.7, count: 77 }, 
+        fun: function function1() {
+            console.log(`Function inside object`); 
+            }
+        } 
+        console.log("product name: " + product.name + " and price is " + product.price);
+        console.log("product name: " + product["name"] + " and price is " + product["price"]);
+        product.newProperty - true;
+        console.log(product);
+
+        delete product.newProperty;
+        console.log(product);
+
+        product.fun();
+
+        const jsonString = JSON.stringify(product);
+        console.log(JSON.stringify(product));
+    </script>
+</body>
+</html>
