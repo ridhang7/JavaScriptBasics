@@ -3,10 +3,11 @@
 
 <head>
     <title>Calculator</title>
+    <link rel="stylesheet" href="styles/Calculator.css">
 </head>
 
 <body>
-    <p id="Calculator"></p>
+    <p id='Result'></p>
     <p>
         <button onclick="calculationUpdate('1');">
             1
@@ -16,6 +17,9 @@
         </button>
         <button onclick="calculationUpdate('3');">
             3
+        </button>
+        <button class = 'operators' onclick="calculationUpdate('+');">
+            +
         </button>
     </p>
 
@@ -29,6 +33,9 @@
         <button onclick="calculationUpdate('6');">
             6
         </button>
+        <button class = 'operators' onclick="calculationUpdate('-');">
+            -
+        </button>
     </p>
 
     <p>
@@ -41,58 +48,33 @@
         <button onclick="calculationUpdate('9');">
             9
         </button>
+        <button class = 'operators' onclick="calculationUpdate('*');">
+            *
+        </button>
     </p>
 
     <p>
         <button onclick="calculationUpdate('0');">
             0
         </button>
-    </p>
-    <p>
-        <button onclick="calculationUpdate('+');">
-            +
+        <button onclick="calculationUpdate('.');">
+            .
         </button>
-        <button onclick="calculationUpdate('-');">
-            -
+        <button onclick="calculate();"> 
+            = 
         </button>
-        <button onclick="calculationUpdate('*');">
-            *
-        </button>
-        <button onclick="calculationUpdate('/');">
+        <button class = 'operators' onclick="calculationUpdate('/');">
             /
         </button>
     </p>
     <p>
-        <button onclick="calculate();"> 
-            = 
-        </button>
-
         <button onclick=" clearValue();">
             clear
         </button>
     </p>
 
-    <p id='Result'>
-        Result
-    </p>
-    <script>
-        let calValue = '';
-
-        document.getElementById('Result').innerHTML = 'Result :' + calValue;
-
-        function calculationUpdate(value) {
-            calValue = calValue + value;
-            console.log(`${calValue}`);
-        }
-        function calculate() {
-            calValue = eval(calValue);
-            console.log(`${parseInt(calValue)}`);
-        }
-        function clearValue() {
-            calValue = '';
-            console.log(`${calValue}`);
-        }
-    </script>
+    
+    <script src="JavaScripts/Calculator.js"> </script>
 </body>
 
 </html>

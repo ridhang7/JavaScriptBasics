@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Project with CSS</title>
+    <link rel="stylesheet" href="styles/Dom-project-with-css.css">
+</head>
+<body>
+        <h2>YouTube Subscribe Button</h2> 
+            <button class="js-yt-subscribe-btn" onclick="Subscribed()" ;>
+                Subscribe
+            </button>
+
+        <h2> Amazon shipping pricing calculator</h2> 
+            <p>Orders under $40 + $10 Shipping cost.</p> 
+            <p>Orders above $40 Free shipping.</p> 
+            <input id="js-cartValueInput" 
+                placeholder="enter order value" 
+                onkeydown="handleCostKeyDown(event);" />
+            <button class='js-calculate-btn' onclick="amazonCartCalculator();">
+                Calculate
+            </button>
+            <p class="js-cartvalue"></p>
+
+        <h2>Rock Paper Scissors</h2>
+            <p class="js-gameResult">Game result: </p>
+            <p class="js-result">Result - </p>
+            <button class ='rock-paper-scissor' 
+                onclick="pickComputerMove();
+                results('Rock');"> &#9994; </button>
+            <button class ='rock-paper-scissor' 
+                onclick="pickComputerMove();
+                results('Paper');"> &#9995; </button>
+            <button class ='rock-paper-scissor'
+                onclick="pickComputerMove();
+                results('Scissors');"> &#9996; </button>
+            <p class="js-yourSelection">Your selection: </p> 
+            <p class="js-computerSelection">Computer selection: </p> 
+            <button class ='js-resetScore' 
+                onclick="resetScore(); 
+                localStorage.removeItem('resultScore');">
+            Reset score </button>
+
+        <h2> heads and Tails </h2>
+            <button onclick="coinGame ('Heads');">heads</button> 
+            <button onclick="coinGame ('Tails');">tails</button> 
+            <p class="js-HT-result"></p>
+            
+        <h2>Name Game</h2>
+            <input id="js-nameHolder" 
+                placeholder="Type your name here" 
+                onkeydown="
+                    if (event.key === 'Enter') {
+                        nameSubmit();
+                    }">
+            <button onclick="nameSubmit();">
+                    Submit</button> 
+            <p class="js-nameResult"></p>
+    <script src="JavaScripts/Dom-project-with-css.js"></script>
+</body>
+</html>

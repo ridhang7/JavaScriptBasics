@@ -3,98 +3,150 @@
 
 <head>
     <title>rock-paper-scissor</title>
+
+    <style>
+        body{
+            background-color:black;
+            color: aliceblue;
+        }
+        .rock-paper-scissor{
+            border: 2px dotted white;
+            border-radius: 60px;
+            padding: 15px;
+            font-size: 60px;
+            background-color:black;
+        }
+        .js-resetScore{
+            border: 2px solid;
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 15px;
+            background-color:beige;
+            color: black;
+        }
+        .js-yourSelection, .js-computerSelection, .js-gameResult, .js-result {
+            border: none;
+            border-radius: 25px;
+            padding: 5px 10px;
+            font-size: 25px;
+        }
+
+    </style>
 </head>
 
 <body>
-    <p>
-        Rock Paper Scissors
-    </p>
-    <button onclick="pickComputerMove();
-        results('Rock');"> 
-        Rock 
-    </button>
-    <button onclick="pickComputerMove(); 
-        results ('Paper')">
-        Paper 
-    </button>
-    <button onclick="pickComputerMove(); 
-        results ('Scissors');">
-        Scissors 
-    </button>
-    <button onclick="resetScore();
-    localStorage.removeItem('score');
-    ">
-    Reset Score
-    </button>
+    <h2>Rock Paper Scissors</h2>
+        <p class="js-gameResult">Game result: </p>
+        <p class="js-result">Result - </p>
+        <button class ='rock-paper-scissor' 
+            onclick="pickComputerMove();
+            results('Rock');"> &#9994; </button>
+        <button class ='rock-paper-scissor' 
+            onclick="pickComputerMove();
+            results('Paper');"> &#9995; </button>
+        <button class ='rock-paper-scissor'
+            onclick="pickComputerMove();
+            results('Scissors');"> &#9996; </button>
+        <p class="js-yourSelection">Your selection: </p> 
+        <p class="js-computerSelection">Computer selection: </p> 
+        <button class ='js-resetScore' 
+            onclick="resetScore(); 
+            localStorage.removeItem('resultScore');">
+            Reset score </button>
     
 </body>
 <script>
+    const userSelection = document.querySelector('.js-yourSelection');
+    const computerSelection = document.querySelector('.js-computerSelection');
     let computerMove = '';
     let userMove = '';
-    let resultString = '';
-
-    let score = JSON.parse(localStorage.getItem('score')) || {
-        wins:0,
-        loss:0,
-        tie:0
-    }
-
-    function pickComputerMove() {
-        const randomNumber = Math.random();
-        computerMove = '';
-        if (randomNumber >= 0 && randomNumber < 1 / 3) {
-            computerMove = 'Rock';
-        } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
-            computerMove = 'Paper';
-        } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
-            computerMove = 'Scissors';
-        }
+    let resultString
+    let resultScore = JSON.parse(localStorage.getItem('resultScore')) || {        
+        Won: 0,
+        Lost: 0,
+        Tie: 0
     };
 
-    function results(userMove) {
-        if (userMove === computerMove){
-            resultString = 'You Tie';
-                score.tie++;
-        } else if (userMove === 'Rock') {
-            if (computerMove === 'Scissors') {
-                resultString = 'You Won';
-                score.wins++;
-            } else if (computerMove === 'Paper') {
-                resultString = 'You Lost';
-                score.loss++;
+    function pickComputerMove() {
+            const randomNumber = Math.random(); 
+            computerMove = '';
+            if (randomNumber > 0 && randomNumber < 1/3) { computerMove = 'Rock';} 
+            else if (randomNumber>= 1/3 && randomNumber < 2/3) { computerMove = 'Paper';}
+            else if (randomNumber >= 2 / 3 && randomNumber < 1) { computerMove = 'Scissors';}
+        }
+
+        function results (userMove) {
+            if (userMove === computerMove ) { 
+                resultString = 'Tie'; 
+                resultScore.Tie += 1; 
+            } else if (userMove === 'Rock') { 
+                if (computerMove === 'Scissors') { 
+                    resultString = 'You Won'; 
+                    resultScore.Won += 1; 
+                } else if (computerMove === 'Paper') { 
+                    resultString = 'You Lost';
+                    resultScore.Lost += 1; 
+                }
+            } else if (userMove === 'Paper') { 
+                if (computerMove === 'Rock') { 
+                    resultString = 'You Won'; 
+                    resultScore.Won += 1;
+                } else if (computerMove === 'Scissors') { 
+                    resultString = 'You Lost';
+                    resultScore.Lost += 1;
+                }
+            } else if (userMove === 'Rock') { 
+                if (computerMove === 'Scissors'){ 
+                    resultString - 'You Won';
+                    resultScore.Won += 1;
+                } else if (computerMove === 'Paper') { 
+                    resultString ='You Lost'; 
+                    resultScore.Lost += 1;
+                }
             }
-        } else if (userMove === 'Paper') {
-            if (computerMove === 'Rock') {
-                resultString = 'You Won';
-                score.wins++;
-            } else if (computerMove === 'Scissors') {
-                resultString = 'You Lost';
-                score.loss++;
-            }
-        } else if (userMove === 'Scissors') {
-            if (computerMove === 'Paper') {
-                resultString = 'You Won';
-                score.wins++;
-            } else if (computerMove === 'Rock') {
-                resultString = 'You Lost';
-                score.loss++;
+            localStorage.setItem('resultScore', JSON.stringify(resultScore));
+            
+            userSelection 
+                .innerHTML = `Your Selection:` + emojiSelector(userMove);
+            computerSelection
+                .innerHTML = `Computer Selection:` + emojiSelector(computerMove);
+            document.querySelector('.js-gameResult')
+                .innerHTML = `Game Result: ${resultString}`;
+            document.querySelector('.js-result')
+                .innerHTML = `Result - Lost: ${resultScore.Lost} Won: ${resultScore.Won} Tie: ${resultScore. Tie}`; 
+        return console.log(`You selected ${userMove}.
+            Computer Selected ${computerMove}. ${resultString}.
+            Current Score Lost: ${resultScore.Lost} Won: ${resultScore.Won} Tie: ${resultScore.Tie}`);
+
+        }
+        
+        function emojiSelector(move){
+            if (move === 'Rock'){
+                return '&#9994;';
+            } else if (move === 'Paper'){
+                return '&#9995;';
+            } else if (move === 'Scissors'){
+                return '&#9996;';
             }
         }
 
-        localStorage.setItem('score', JSON.stringify(score));
-
-        alert( `You selected ${userMove}. Computer selected ${computerMove}. ${resultString}. Current score is Tie: ${score.tie} Won: ${score.wins} Lost: ${score.loss}`);
-    }
-
-    function resetScore(){
-        score.tie = 0;
-        score.wins = 0;
-        score.loss = 0;
-    
-        localStorage.setItem('score', JSON.stringify(score));
-
-        alert(`Score reset complete Current score is Tie: ${score.tie} Won: ${score.wins} Lost: ${score.loss}`);
-    }
+        function resetScore() {
+            resultScore.Tie = 0;
+            resultScore.Won = 0;
+            resultScore.Lost = 0;
+            resultString = "";
+            localStorage.setItem('score', JSON.stringify(resultScore));
+            document.querySelector('.js-yourSelection') 
+                .innerHTML = `Your Selection: `;
+            document.querySelector('.js-computerSelection')
+                .innerHTML = `Computer Selection: `;
+                document.querySelector('.js-gameResult')
+                .innerHTML = `Game Result: ${resultString}`;
+            document.querySelector('.js-result')
+                .innerHTML = `Result - Lost: ${resultScore.Lost} Won: ${resultScore.Won} Tie: ${resultScore. Tie}`; 
+        return console.log(`Score reset complete Lost: ${resultScore.Lost} Won: ${resultScore.Won} Tie: ${resultScore.Tie}`);   
+        }
     </script>
 
 </html>

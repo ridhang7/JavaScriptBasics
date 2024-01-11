@@ -1,0 +1,41 @@
+body{
+    background-color: white;
+    color: black;
+}
+.amzn-add-to-cart, .js-test{
+    border: none;
+    background-color: rgb(255,216,20);
+    border-radius: 25px;
+    font-size: 20px;
+    padding: 15px 50px;
+}
+
+.uber-req-now, .uber-sche-later{
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold; 
+    border-radius: 10px;
+}
+
+.uber-sche-later{
+    margin-left: 50px;
+    background-color: rgb(230,230,230);
+    color: black;
+}
+
+.js-toggleBtn{
+    border: none;
+    background-color: rgb(230,230,230);
+    padding: 15px 50px;
+    font-size: 15px;
+    font-weight: bold; 
+    border-radius: 10px;
+}
+
+.toggle{
+    background-color: black;
+    color: white;
+}

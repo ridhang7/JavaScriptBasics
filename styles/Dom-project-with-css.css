@@ -1,0 +1,56 @@
+body{
+    background-color:black;
+    color: aliceblue;
+}
+.js-yt-subscribe-btn{
+    border:none;
+    background-color:red;
+    color: aliceblue;
+    font-size: large;
+    padding: 15px;
+    border-radius: 25px;    
+}
+
+.js-yt-subscribed-btn{
+    background-color:whitesmoke;
+    color: black;
+}
+
+.js-calculate-btn{
+    border:none;
+    background-color:bisque;
+    color: black;
+    font-size: large;
+    padding: 15px;
+}
+
+#js-cartValueInput{
+    font-size: large;
+    padding: 13px;
+}
+.rock-paper-scissor{
+    border: 2px dotted white;
+    border-radius: 60px;
+    padding: 15px;
+    font-size: 60px;
+    background-color:black;
+}
+.js-resetScore{
+    border: 2px solid;
+    border-radius: 25px;
+    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 15px;
+    background-color:beige;
+    color: black;
+}
+.js-yourSelection, .js-computerSelection, .js-gameResult, .js-result {
+    border: none;
+    border-radius: 25px;
+    padding: 5px 10px;
+    font-size: 25px;
+}
+
+.js-error{
+    color: red;
+}

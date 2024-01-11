@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+}
+
+button{
+    border: none;
+    padding: 20px 25px;
+    font-size: 15px;
+    border-radius: 100px;
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+}
+
+.operators{
+    background-color:orange;
+    color: white;
+}
+#Result{
+    font-size: 50px;
+    color: white;
+}

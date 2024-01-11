@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Exercise - 10</title>
+<link rel="stylesheet" href="styles/Dom-project-with-css.css">
+<link rel="stylesheet" href="styles/exercise-10.css">
+
+</head>
+<body>
+    <button class="amzn-add-to-cart">Add to Cart</button>
+    <p>
+    <button class="uber-req-now">Request now</button>
+
+    <button class="uber-sche-later">Schedule for later</button>
+    <p>
+    <button class="js-test">Test</button>
+    <p>individual button toggle </p>
+    <button class="js-toggleBtn js-gamingBtn"
+    onclick="toggle('.js-gamingBtn');"> Gaming </button>
+
+    <button class="js-toggleBtn js-musicBtn"
+    onclick="toggle('.js-musicBtn');"> Music </button>
+
+    <button class="js-toggleBtn js-techBtn"
+    onclick="toggle('.js-techBtn');"> Tech </button>
+    <p>Multiple button toggle</p>
+    <button class="js-toggleBtn js-GamingBtn"
+    onclick="multiToggle('.js-GamingBtn');"> Gaming </button>
+
+    <button class="js-toggleBtn js-MusicBtn"
+    onclick="multiToggle('.js-MusicBtn');"> Music </button>
+
+    <button class="js-toggleBtn js-TechBtn"
+    onclick="multiToggle('.js-TechBtn');"> Tech </button>
+
+    <h2> Amazon shipping pricing calculator</h2> 
+        <p>Orders under $40 + $10 Shipping cost.</p> 
+        <p>Orders above $40 Free shipping.</p> 
+        <input id="js-cartValueInput" 
+            placeholder="enter order value" 
+            onkeydown="handleCostKeyDown(event);" />
+        <button class='js-calculate-btn' onclick="amazonCartCalculator();">
+            Calculate
+        </button>
+        <p class="js-cartvalue"></p>
+    <script src="JavaScripts/Dom-project-with-css.js" > </script>
+    <script src="JavaScripts/exercise-10.js" > </script>
+    
+</body>
+</html>
