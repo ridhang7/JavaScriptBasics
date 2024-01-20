@@ -1,73 +1,19 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>To-Do list</title>
-    <link rel="stylesheet" href="">
-</head>
+    <head>
+        <title>To-Do list</title>
+        <link rel="stylesheet" href="styles/to-do.css">
+    </head>
 
 <body>
-    <input id="to-do" placeholder="Enter task name"/>
-    <button class="js-todo-add"
+    <div class="To-do-listGrid">
+    <input class="to-do" placeholder="Enter task name" />
+    <input class="to-do-Date" type="date" />
+    <button
+    class="js-todo-add"
     onclick="addToList();">
-        Add
-    </button>
-
-    <button class="js-todo-deleteAll"
-    onclick="deleteFromToDoList();">
-        Delete To-do list
-    </button>
-
-    <button class="js-todo-addElement"
-    onclick="addElement();">
-        Add element
-    </button>
-
-    <p class="js-TodoList"></p>
-    <script>
-    let todo = JSON.parse(localStorage.getItem("todo")) || [];
-
-    function addToList(){
-        const todoTaskLocator = document.getElementById('to-do');
-        if (todoTaskLocator.value != ''){
-            todo.push(todoTaskLocator.value);
-            localStorage.setItem("todo", JSON.stringify(todo));
-            todoTaskLocator.value = '';
-        }
-        else{
-            alert('enter value in todo task');
-        }
-        console.log(JSON.parse(localStorage.getItem("todo")));
-        displayTodoList(JSON.parse(localStorage.getItem("todo")));
-    }
-
-    function deleteFromToDoList(){
-        todo = [];
-        localStorage.setItem("todo", JSON.stringify(todo));
-        displayTodoList([' ']);
-        console.log(JSON.parse(localStorage.getItem("todo")));
-    }
-
-
-    function displayTodoList(todoList){
-        for (let index = 0; index < todoList.length; index++) {
-            addElement(todoList[index]);
-        }
-    }
-
-    function addElement(ToDoValue){
-        // let deleteElement = document.getElementsByClassName('to-doList');
-        // while (deleteElement.length > 0) {
-        //     deleteElement[0].remove();
-        // }
-        let newElement = document.createElement("p");
-        newElement.className = "to-doList";
-        let textNode = document.createTextNode(ToDoValue);
-        newElement.appendChild(textNode);
-        document.body.appendChild(newElement);
-    }
-    
-    </script>
+    Add </button>
+    </div>
+    <div class="js-TodoList To-do-listGrid"> </div>
+    <script src="JavaScripts/to-do.js"></script>
 </body>
-
 </html>

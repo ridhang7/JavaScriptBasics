@@ -1,0 +1,30 @@
+body {
+    font-size: 20px;
+}
+
+.to-do, .to-do-Date { 
+    font-size: 15px;
+}
+
+.js-todo-add, .js-todoDeleteItem { 
+    border: none;
+    padding: 12px 50px; 
+    font-size: 15px; 
+    background-color: green; 
+    cursor:pointer;
+}
+
+.js-todoDeleteItem { 
+    background-color: crimson;
+}
+
+.To-do-listGrid {
+display: grid;
+grid-template-columns: 200px 150px 150px;
+column-gap: 50px;
+row-gap: 20px;
+}
+
+.js-TodoList {
+margin-top: 20px;
+}
