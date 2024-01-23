@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stop watch</title>
+  </head>
+  <body>
+    <p style="font-size: xx-large" class="js-timer"></p>
+    <button class="js-timerStart">Start</button>
+    <button class="js-timerStop">Stop</button>
+    <button class="js-timerReset">reset</button>
+    <script>
+      const timerView = document.querySelector(".js-timer");
+      const timerReset = document.querySelector(".js-timerReset");
+      const timerStart = document.querySelector(".js-timerStart");
+      const timerStop = document.querySelector(".js-timerStop");
+
+      let timerStartID;
+      let _hour = 0;
+      let _minute = 0;
+      let _second = 0;
+      timerView.innerHTML = `${pad(_hour)}:${pad(_minute)}:${pad(_second)}`;
+
+      timerStart.addEventListener("click", updateTimer);
+
+      timerStop.addEventListener("click", stopTimer);
+
+      timerReset.addEventListener("click", resetTimer);
+
+      function updateTimer() {
+        timerStartID = setInterval(() => {
+          _second = _second + 1;
+          if (_second === 59) {
+            _second = 0;
+            _minute = _minute + 1;
+            if (_minute === 59) {
+              _minute = 0;
+              _hour = _hour + 1;
+            }
+          }
+          timerView.innerHTML = `${pad(_hour)}:${pad(_minute)}:${pad(_second)}`;
+          timerStart.setAttribute("disabled", true);
+        }, 100);
+      }
+
+      function stopTimer() {
+        if (timerStartID) {
+          clearInterval(timerStartID);
+          timerStart.removeAttribute("disabled");
+        }
+      }
+
+      function resetTimer() {
+        if (timerStartID) {
+          clearInterval(timerStartID);
+          _hour = 0;
+          _minute = 0;
+          _second = 0;
+          timerView.innerHTML = `${pad(_hour)}:${pad(_minute)}:${pad(_second)}`;
+          timerStart.removeAttribute("disabled");
+        }
+      }
+
+      function pad(value) {
+        return value < 10 ? "0" + value : value;
+      }
+    </script>
+  </body>
+</html>
