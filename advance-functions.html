@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>advance - functions</title>
+  </head>
+
+  <body>
+    <button
+      class="js-nameChange"
+      onclick="
+        timeOut();
+        "
+    >
+      Click
+    </button>
+
+    <button class="js-addToCart" onclick="itemAdded();">Add to cart</button>
+    <p class="js-itemAdded"></p>
+
+    <button onclick="count++;">Add</button>
+    <button
+      onclick="
+    if (count > 0){
+      count--;
+    }
+    "
+    >
+      Remove
+    </button>
+
+    <button onclick="" class="js-eventButton">Click</button>
+    <script>
+      document.body.addEventListener("keydown", (event) => {
+        console.log(event.key);
+      });
+
+      const buttonElement = document.querySelector(".js-eventButton");
+
+      buttonElement.addEventListener("click", () => {
+        console.log("click");
+      });
+
+      function _function() {
+        console.log("greet from direct function");
+      }
+
+      const _function1 = function greetings() {
+        console.log("greet from variable function with function name");
+      };
+
+      const _function2 = function () {
+        console.log(
+          "greet from variable function without function name - anonymus function"
+        );
+      };
+
+      _function();
+      _function1();
+      _function2();
+
+      //Object can store any typeof value in key, value format. It can be function, string, array, number, etc.
+      const _object = {
+        fun: function () {
+          console.log("greet from anonymus function stored inside an object");
+        },
+        num: 2,
+      };
+
+      _object.fun();
+
+      function _function4(params) {
+        params();
+      }
+
+      _function4(function () {
+        console.log(
+          "greet from anonymus function passed inside a function --> Function inside a function passed as parameter"
+        );
+      });
+
+      setTimeout(function () {
+        console.log(
+          "greet after 5 seconds using setTimeout function by passing function inside a function"
+        );
+      }, 5000);
+
+      // setInterval( function(){
+      //     console.log('greet after 5 seconds using setInterval function by passing function inside a function and repeat it');
+      // }, 5000);
+
+      ["make dinner", "leave for GYM", "complete Java script course"].forEach(
+        function (value) {
+          console.log(value);
+        }
+      );
+
+      let add = function () {
+        console.log(2 + 3);
+      };
+
+      // add();
+      // add();
+
+      function executeTwice(params) {
+        let i = 0;
+        while (i < 2) {
+          params();
+          console.log(" +++ ");
+          i++;
+        }
+        for (let i = 0; i < 2; i++) {
+          params();
+          console.log(" --- ");
+        }
+      }
+      executeTwice(add);
+
+      function timeOut() {
+        document.querySelector(".js-nameChange").innerHTML = "Loading...";
+        setTimeout(() => {
+          document.querySelector(".js-nameChange").innerHTML = "Finished";
+        }, 1000);
+      }
+
+      let interVal;
+      let count = 0;
+
+      function itemAdded() {
+        document.querySelector(".js-itemAdded").innerHTML = "Added";
+
+        clearInterval(interVal);
+
+        interVal = setTimeout(() => {
+          document.querySelector(".js-itemAdded").innerHTML = "";
+        }, 2000);
+      }
+
+      setInterval(() => {
+        if (document.title === "advance - functions") {
+          if (count > 0) {
+            document.title = `(${count}) New message`;
+          }
+        } else {
+          document.title = "advance - functions";
+        }
+      }, 1000);
+
+      const oneParamWithBrackets = (param) => {
+        console.log(param);
+      };
+
+      const oneParamWithoutBrackets = (param) => {
+        console.log(param);
+      };
+
+      const oneLineWithReturn = () => {
+        return 2 + 3;
+      };
+
+      const oneLineWithoutReturn = () => 2 + 3;
+
+      oneParamWithBrackets("this is arrow function with () brackets");
+      oneParamWithoutBrackets("this is arrow function without () brackets");
+
+      console.log(oneLineWithReturn());
+      console.log(oneLineWithoutReturn());
+
+      //filter method of array
+      console.log(
+        [1, -3, 4, 5].filter((value, index) => {
+          /* if (value >=0) {
+          return true;
+        }
+        else {
+          return false;
+        } 
+        */
+
+          return value >= 0;
+        })
+      );
+
+      //map method of array
+      console.log(
+        [1, -3, 4, 5].map((value, index) => {
+          return (value += value);
+        })
+      );
+
+      const multiply = (a, b) => a * b;
+
+      console.log(multiply(2, 3));
+
+      function countPositive() {
+        let _count = 0;
+        [1, 2, -4, 5, -6, 3].forEach((value, index) => {
+          if (value > 0) {
+            _count++;
+          }
+        });
+        return _count;
+      }
+
+      console.log(countPositive());
+
+      function addNum(numList, number) {
+        return numList.map((value, index) => value + number);
+      }
+
+      console.log(addNum([1, 2, 3, 4, 5], 2));
+
+      const searchString = ['hello', 'google', 'egg', 'search', 'egg', 'for', 'algorithm', 'Egg', 'egg']; 
+
+      function removeEgg(foodList, noOfElementToRemove) {
+        let counter = 0;
+        return foodList.filter((value) => {
+          if (value === 'egg' && counter < noOfElementToRemove){
+            counter ++;              
+            return false;
+            }
+            return true;
+        });
+      }
+
+      console.log(removeEgg (['egg', 'apple', 'egg', 'egg', 'ham'], 2));
+    </script>
+  </body>
+</html>

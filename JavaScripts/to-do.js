@@ -1,5 +1,10 @@
 let ToDoListLocator = document.querySelector(".js-TodoList");
 let todo = JSON.parse(localStorage.getItem("todo")) || [];
+
+document.querySelector('.js-todo-add').addEventListener('click', ()=> {
+  addToList();
+});
+
 renderToDoList();
 
 function addToList() {
@@ -31,6 +36,10 @@ function deleteFromToDoList() {
 function renderToDoList() {
   ToDoListLocator.innerHTML = "";
   localStorage.setItem("todo", JSON.stringify(todo));
+  
+  /* forEach() method
+  todo.forEach(function (todoObject, index) { 
+  */
   for (let index = 0; index < todo.length; index++) {
     const todoObject = todo[index];
     console.log(todoObject);
@@ -39,9 +48,19 @@ function renderToDoList() {
     ToDoListLocator.innerHTML =
       ToDoListLocator.innerHTML +
       `<div>${name}</div> 
-            <div>${dueDate}</div>
-            <button onclick="todo.splice (${index},1); 
-            renderToDoList();
-            " class='js-todoDeleteItem'> Delete </button>`;
-  }
+              <div>${dueDate}</div>
+              <button class='js-todoDeleteItem'
+              > Delete 
+              </button>`;
+  };
+
+  document.querySelectorAll('.js-todoDeleteItem').forEach((deleteButton, index) => {
+    deleteButton.addEventListener('click', () => { 
+      todo.splice (index,1);
+      renderToDoList();
+    })
+    
+  });
 }
+
+// 
